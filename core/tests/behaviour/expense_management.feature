@@ -26,7 +26,47 @@ Feature: Gestión de gastos
     Then el total de dinero gastado debe ser 15 euros
 
   Scenario: Crear tres gastos diferentes que sumen 30 euros hace que el total sean 30 euros
+    Given un gestor de gastos vacío
+    When añado un gasto de 5 euros llamado Café
+    And añado un gasto de 10 euros llamado Comida
+    And añado un gasto de 15 euros llamado Cena
+    Then el total de dinero gastado debe ser 30 euros
 
   Scenario: Crear tres gastos de 10, 30, 30 euros y elimino el ultimo gasto la suma son 40 euros
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Café
+    And añado un gasto de 30 euros llamado Comida
+    And añado un gasto de 30 euros llamado Cena
+    And elimino el gasto con id 3
+    Then el total de dinero gastado debe ser 40 euros
 
   Scenario: Crear tres gastos de 10, 30, 30 euros y elimino el ultimo gasto la suma son 40 euros
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Café
+    And añado un gasto de 30 euros llamado Comida
+    And añado un gasto de 30 euros llamado Cena
+    And elimino el gasto con id 3
+    Then el total de dinero gastado debe ser 40 euros
+  
+   Scenario: Crear un gastos de 10 y elimino un gasto que no existe la suma son 10 euros
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Café
+    And elimino el gasto con id 3
+    Then el total de dinero gastado debe ser 10 euros
+  
+  Scenario: Crear tres gastos y eliminar el segundo deja como total la suma de los otros dos
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Café
+    And añado un gasto de 20 euros llamado Comida
+    And añado un gasto de 30 euros llamado Cena
+    And elimino el gasto con id 2
+    Then el total de dinero gastado debe ser 40 euros
+    And debe haber 2 gastos registrados
+
+  Scenario: Crear tres gastos iguales y comprobar que se suman correctamente y hay tres registros
+    Given un gestor de gastos vacío
+    When añado un gasto de 10 euros llamado Café
+    And añado un gasto de 10 euros llamado Café
+    And añado un gasto de 10 euros llamado Café
+    Then el total de dinero gastado debe ser 30 euros
+    And debe haber 3 gastos registrados
