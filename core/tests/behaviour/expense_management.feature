@@ -47,7 +47,7 @@ Feature: Gestión de gastos
     And añado un gasto de 30 euros llamado Cena
     And elimino el gasto con id 3
     Then el total de dinero gastado debe ser 40 euros
-  
+    
    Scenario: Crear un gastos de 10 y elimino un gasto que no existe la suma son 10 euros
     Given un gestor de gastos vacío
     When añado un gasto de 10 euros llamado Café
